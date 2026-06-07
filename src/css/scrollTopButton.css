@@ -1,0 +1,74 @@
+.scroll-top-button {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  z-index: 999999999;
+
+  display: grid;
+  place-items: center;
+
+  /* cursor: pointer ; */
+  border-radius: 99999px;
+  border: none;
+  box-shadow:
+    0 0 0 3px white,
+    0 0 0 6px var(--scroll-button-background-color);
+
+  background-color: var(--scroll-button-background-color);
+  padding: 5px;
+  font-size: 25px;
+
+  opacity: 0;
+  transition: 0.2s linear;
+}
+
+.showing {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.scroll-top-button > svg {
+  stroke: black;
+  stroke-width: 0.5px;
+  transition: 0.2s linear;
+}
+
+.scroll-top-button > svg > path {
+  fill: black ;
+}
+
+.scroll-top-button:hover > svg {
+  transform: translateY(-3px);
+}
+
+@media screen and (max-height: 700px) {
+  .scroll-top-button {
+    font-size: 20px;
+    padding: 3px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .scroll-top-button {
+    font-size: 15px;
+    padding: 2px;
+    box-shadow:
+      0 0 0 2px white,
+      0 0 0 4px var(--scroll-button-background-color);
+  }
+
+  .scroll-top-button > svg {
+    stroke-width: 1px;
+  }
+
+  .scroll-top-button:hover > svg {
+    transform: translateY(-2px);
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .scroll-top-button {
+    font-size: 20px;
+    padding: 3px;
+  }
+}

@@ -1,0 +1,21 @@
+button {
+  /* font-size: 22px; */
+  padding: 2px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+
+  display: flex;
+  place-items: center;
+}
+
+button > svg {
+  height: 30px;
+  width: 30px;
+}
+
+button {
+  color: var(--color);
+  border-color: var(--color);
+}

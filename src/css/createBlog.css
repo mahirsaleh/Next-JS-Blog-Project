@@ -1,0 +1,206 @@
+div.create-container {
+  position: relative;
+  top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+h1.create-container__heading {
+  font-size: 40px;
+}
+
+form.create-container__blog-form {
+  background-color: var(--auth-form-container--background-color);
+  width: 50%;
+  border-radius: 10px;
+  padding: 25px 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+form.create-container__blog-form > div {
+  font-size: 25px;
+
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 5px;
+}
+
+input.title-div__title-input,
+textarea.content-div__content-textarea {
+  font-size: 25px;
+  padding: 10px;
+  letter-spacing: 2px;
+  background-color: var(--input--background-color);
+
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+input.title-div__title-input:focus,
+textarea.content-div__content-textarea:focus {
+  outline: 1px solid var(--color);
+}
+
+textarea.content-div__content-textarea {
+  resize: none;
+  font-family: Arial;
+}
+
+form.create-container__blog-form div.blog-form__img-div {
+  gap: 15px;
+}
+
+input.img-div__img-input {
+  font-size: 22px;
+  cursor: pointer;
+  border: 2px dashed var(--color);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+input.img-div__img-input::file-selector-button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: hsl(0, 59%, 41%);
+  color: white;
+  margin-right: 35px;
+
+  pointer-events: auto;
+
+  transition: background-color 0.15s;
+
+  border: none;
+  border-right: 2px dashed var(--color);
+}
+
+input.img-div__img-input::file-selector-button:hover,
+input.img-div__img-input-disabled::file-selector-button {
+  background-color: hsl(0, 59%, 35%);
+}
+
+button.blog-form__upload-button {
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+
+  display: grid;
+  place-items: center;
+}
+
+form.create-container__blog-form > div.blog-form__button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+form > div.blog-form__error-div {
+  width: 95%;
+  border: 2px solid var(--color);
+  border-radius: 10px;
+  padding: 15px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+p.error-div__error-message {
+  font-size: 25px;
+}
+
+button.error-div__error-clear-button {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: hsl(0, 90%, 60%);
+  padding: 5px 8px;
+
+  border-radius: 0;
+  border: none;
+  border-left: 2px solid var(--color);
+  border-bottom: 2px solid var(--color);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+button.error-div__error-clear-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1100px) {
+  div.create-container {
+    top: 60px;
+  }
+  h1.create-container__heading {
+    font-size: 35px;
+  }
+  form.create-container__blog-form {
+    width: 90%;
+  }
+  form.create-container__blog-form > div {
+    width: 90%;
+  }
+  p.error-div__error-message {
+    font-size: 22px;
+  }
+  form.create-container__blog-form > div.blog-form__button-section {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  h1.create-container__heading {
+    font-size: 30px;
+  }
+  form.create-container__blog-form {
+    width: 95%;
+  }
+  form.create-container__blog-form > div {
+    width: 95%;
+    font-size: 22px;
+  }
+  input.title-div__title-input,
+  textarea.content-div__content-textarea {
+    font-size: 22px;
+    padding: 5px;
+    letter-spacing: 1.5px;
+    border-radius: 3px;
+  }
+  textarea.content-div__content-textarea {
+    height: 350px;
+  }
+  button.blog-form__upload-button {
+    font-size: 18px;
+    padding: 8px;
+  }
+  p.error-div__error-message {
+    font-size: 20px;
+  }
+  input.img-div__img-input {
+    font-size: 18px;
+  }
+  input.img-div__img-input::file-selector-button {
+    padding: 5px;
+    margin-right: 15px;
+  }
+}

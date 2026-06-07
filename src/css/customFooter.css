@@ -1,0 +1,99 @@
+.FooterDiv {
+  position: relative;
+
+  margin-top: 180px;
+  padding: 100px 0px;
+}
+
+.FooterDiv::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--footer--background-color);
+}
+
+.FooterDiv__curved-div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 2;
+}
+.FooterDiv__curved-div > svg {
+  height: 100%;
+  width: 100%;
+}
+.FooterDiv__curved-div path {
+  width: 100%;
+  fill: var(--footer__curved-div--background-color);
+}
+
+.FooterDiv__info-div {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.FooterDiv__info-div > p {
+  z-index: 10;
+  font-size: 28px;
+  color: white;
+}
+
+/* p.info-div__copy-right { */
+div.FooterDiv__info-div > p.info-div__copy-right {
+  font-size: 25px;
+  font-family: "Dancing Script";
+  font-weight: 900;
+
+  position: absolute;
+  left: 10px;
+  bottom: 3%;
+}
+
+.info-div__links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  z-index: 10;
+}
+
+.links__link {
+  font-size: 35px;
+  transition: color 0.2s;
+  color: white;
+
+  display: grid;
+  place-items: center;
+}
+
+.links__link:hover {
+  color: hsl(0, 0%, 70%);
+}
+
+.links__link > svg {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 849px) {
+  .FooterDiv {
+    padding: 60px 0px;
+    margin-top: 150px;
+  }
+  .info-div__links {
+    gap: 20px;
+  }
+  .links__link {
+    font-size: 30px;
+  }
+  div.FooterDiv__info-div > p.info-div__copy-right {
+    font-size: 22px;
+  }
+}

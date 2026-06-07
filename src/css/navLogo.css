@@ -1,0 +1,11 @@
+a.logo-nav {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+a.logo-nav > img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}

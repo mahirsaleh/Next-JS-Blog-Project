@@ -1,0 +1,193 @@
+nav.auth-pages-nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main.auth-pages-layout-main {
+  /* margin-top: 200px; */
+  display: grid;
+  place-items: center;
+  margin-top: 50px;
+}
+
+.AuthPages__home-page-button {
+  position: fixed;
+  top: 90px ;
+  left: 20px ;
+
+  font-size: 22px ;
+  background: var(--comments-div__comment--background-color) ;
+  padding: 10px ;
+  border-radius: 5px ;
+  font-weight: 700;
+
+  transition: opacity 0.15s ;
+} 
+
+.AuthPages__home-page-button:hover {
+  opacity: 0.7;
+}
+
+/* div.light {
+  background-color: var(--auth-form-container--light);
+}
+
+div.dark {
+  background-color: var(--auth-form-container--dark);
+} */
+
+.container {
+  background-color: var(--auth-form-container--background-color);
+}
+
+.sign-up-container {
+  margin-top: 150px;
+  border-radius: 10px;
+  width: 90%;
+  gap: 10px;
+  font-size: 22px;
+  padding: 30px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form.sign-up-container__sign-up-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  width: 100%;
+  margin-top: 20px;
+}
+
+form.sign-up-container__sign-up-form > div {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+form.sign-up-container__sign-up-form > div > input {
+  width: 70%;
+}
+
+form.sign-up-container__sign-up-form div {
+  background-color: transparent;
+}
+
+form.sign-up-container__sign-up-form input[type="text"],
+form.sign-up-container__sign-up-form input[type="password"],
+form.sign-up-container__sign-up-form input[type="email"] {
+  font-size: 22px;
+  padding: 2px 5px;
+  letter-spacing: 1.2px;
+  border: 2px solid gray;
+}
+
+form.sign-up-container__sign-up-form input[type="text"],
+form.sign-up-container__sign-up-form input[type="password"],
+form.sign-up-container__sign-up-form input[type="email"] {
+  background-color: var(--input--background-color);
+  color: var(--color);
+}
+
+.sign-up-form__button-section {
+  margin-top: 20px;
+}
+
+form.sign-up-container__sign-up-form input[type="submit"],
+form.sign-up-container__sign-up-form input[type="button"] {
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+  margin: 0 20px;
+  border: none;
+  color: white;
+  transition: opacity 0.15s;
+}
+
+form.sign-up-container__sign-up-form input[type="submit"] {
+  background-color: darkgreen;
+}
+
+form.sign-up-container__sign-up-form input[type="button"] {
+  background-color: darkred;
+}
+
+form.sign-up-container__sign-up-form input[type="submit"]:hover,
+form.sign-up-container__sign-up-form input[type="button"]:hover {
+  opacity: 0.8;
+}
+
+p.sign-up-container__go-to-sign-up-page {
+  margin-top: 30px;
+}
+
+p.sign-up-container__go-to-sign-up-page a {
+  text-decoration: none;
+  color: tomato;
+  font-weight: bold;
+}
+
+p.sign-up-container__go-to-sign-up-page a.pointer-events-none {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+div.error-message-div {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  div.sign-up-container {
+    width: 95%;
+  }
+  form.sign-up-container__sign-up-form > div {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  div.sign-up-form__button-section > input {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  div.sign-up-container {
+    margin-top: 100px;
+    width: 98%;
+  }
+  form.sign-up-container__sign-up-form > div {
+    padding: 0;
+    flex-direction: column;
+    gap: 20px;
+    /* align-items: flex-start; */
+  }
+
+  div.sign-up-form__button-section > input {
+    margin: 0px;
+  }
+  form.sign-up-container__sign-up-form > div > input {
+    width: 90%;
+  }
+  form.sign-up-container__sign-up-form label {
+    align-self: flex-start;
+    margin-left: 30px;
+  }
+  form > div.sign-up-form__button-section input[type="submit"],
+  form > div.sign-up-form__button-section input[type="button"] {
+    width: 50%;
+  }
+}

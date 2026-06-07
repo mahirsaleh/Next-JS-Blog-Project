@@ -1,0 +1,44 @@
+.skeleton-container {
+  width: 100%;
+  height: 70px;
+  padding: 5px 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  position: fixed;
+  top: 0;
+  z-index: 9999999;
+  background-color: var(--skeleton-nav--background-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.skeleton-container__logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-right: auto;
+}
+
+.skeleton-container__text {
+  height: 80%;
+  flex-grow: 1;
+  border-radius: 10px;
+}
+
+.skeleton-container__logo,
+.skeleton-container__text {
+  animation: animate 0.5s linear infinite alternate;
+}
+
+@keyframes animate {
+  0% {
+    background-color: var(--skeleton-nav__animation-start);
+  }
+  100% {
+    background-color: var(--skeleton-nav__animation-end);
+  }
+}
