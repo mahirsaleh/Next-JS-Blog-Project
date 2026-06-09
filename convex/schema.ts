@@ -7,6 +7,7 @@ export default defineSchema({
     title: v.string(),
     body: v.string(),
     authorID: v.string(),
+    authorName: v.string(),
     imageStorageID: v.id("_storage"),
     imageBlurDataURL: v.string(),
   }),

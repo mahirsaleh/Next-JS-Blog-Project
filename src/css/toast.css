@@ -1,5 +1,5 @@
 div.outer-toast-box {
-  position: absolute;
+  position: fixed;
 
   width: 100%;
 
@@ -7,6 +7,7 @@ div.outer-toast-box {
   justify-content: center;
 
   transition: 0.5s;
+  z-index: 99999999999999;
 }
 
 div.outer-toast-box-show {

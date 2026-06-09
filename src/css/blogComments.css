@@ -59,6 +59,34 @@
   letter-spacing: 1.5px;
 }
 
+.delete-comment-button-div--show {
+  display: grid;
+}
+
+.delete-comment-button-div--hide {
+  display: none;
+}
+
+.delete-comment-button-div {
+  /* display: grid; */
+  place-items: center;
+
+  margin-top: 20px;
+}
+
+.delete-comment-button-div__delete-button {
+  font-size: 22px;
+  padding: 5px 8px;
+
+  background-color: hsl(0, 80%, 50%);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.delete-comment-button-div__delete-button:hover {
+  background-color: hsl(0, 80%, 35%);
+}
+
 /* blog comment form starts */
 .blog-comment-form {
   display: flex;

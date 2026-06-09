@@ -3,42 +3,6 @@ main.pages-layout-main {
   /* background-color: red; */
 }
 
-nav.pages-layout-header__nav-bar {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav.pages-layout-header__nav-bar > nav {
-  background-color: transparent;
-}
-
-nav.pages-layout-header__nav-bar a:hover {
-  color: var(--nav__a--hover-color);
-}
-
-nav.pages-layout-header__nav-bar > nav {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  align-items: center;
-}
-
-nav.nav-bar__sign-log-theme-nav > a,
-nav.nav-bar__sign-log-theme-nav > p,
-nav.nav-bar__pages-nav > a {
-  font-size: 22px;
-  text-decoration: none;
-}
-
-button.logout-button {
-  font-size: 20px;
-  padding: 5px;
-  border-width: 1px;
-}
-
 /* div.sign-log-theme-nav__skeleton-div {
   background-color: red;
   display: flex;

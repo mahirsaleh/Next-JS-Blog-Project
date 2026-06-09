@@ -13,7 +13,7 @@ main.auth-pages-layout-main {
 }
 
 .AuthPages__home-page-button {
-  position: fixed;
+  position: absolute;
   top: 90px ;
   left: 20px ;
 

@@ -146,6 +146,7 @@ type TSingleBlogFunctionReturnType = Promise<{
   body?: string | undefined;
   title?: string | undefined;
   authorID?: string | undefined;
+  authorName?: string | undefined;
   imageStorageID?: Id<"_storage"> | undefined;
   imageBlurDataURL?: string | undefined;
 }>;
@@ -166,6 +167,72 @@ export const singleBlogFunction = async function ({
 };
 
 /* singleBlogFunction ends */
+
+/* DeleteBlogFunction starts */
+export const deleteBlogFunction = async function ({
+  postId,
+}: {
+  postId: Id<"posts">;
+}): Promise<{ success: true }> {
+  try {
+    const token = await getToken();
+    await fetchMutation(
+      api.posts.deletePost,
+      {
+        postId: postId,
+      },
+      { token },
+    );
+
+    updateTag("blogPage");
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    const deletePostError =
+      error instanceof Error ? error : new Error("SomeThing went wrong!");
+
+    throw deletePostError;
+  }
+};
+/* DeleteBlogFunction ends */
+
+/* deleteBlogCommentFunction starts */
+
+type TDeleteBlogCommentFunctionProperty = {
+  commentID: Id<"postComments">;
+  blogID: Id<"posts">;
+};
+
+export const deleteBlogCommentFunction = async function ({
+  commentID,
+  blogID,
+}: TDeleteBlogCommentFunctionProperty): Promise<{ success: true }> {
+  try {
+    const token = await getToken();
+
+    await fetchMutation(
+      api.postComments.deletePostComment,
+      {
+        commentID: commentID,
+      },
+      { token },
+    );
+
+    updateTag(`singleBlogPage-${blogID}`);
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    const deleteCommentError =
+      error instanceof Error ? error : new Error("SomeThing went wrong!");
+
+    throw deleteCommentError;
+  }
+};
+/* deleteBlogCommentFunction ends */
 
 /* BlogComment starts */
 

@@ -1,0 +1,145 @@
+.pages-layout-header__nav-bar {
+  display: flex;
+  flex-direction: row;
+  /* gap: 20px; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar__nav-theme-section {
+  min-width: calc(50% + 125px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.nav-theme-section__nav-section {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-section__menu-button {
+  display: none;
+}
+
+.pages-layout-header__nav-bar nav {
+  background-color: transparent;
+}
+
+.pages-layout-header__nav-bar a:hover {
+  color: var(--nav__a--hover-color);
+}
+
+.pages-layout-header__nav-bar nav {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-bar__sign-log-theme-nav > a,
+.nav-bar__sign-log-theme-nav > p,
+.nav-bar__pages-nav > a {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.logout-button {
+  font-size: 20px;
+  padding: 5px;
+  border-width: 1px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info > svg {
+  height: 25px;
+  width: 25px;
+}
+
+@media screen and (max-width: 735px) {
+  .nav-bar__nav-theme-section {
+    min-width: 75%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .nav-bar__nav-theme-section {
+    min-width: 83%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  nav.pages-layout-header__nav-bar {
+    padding: 0px 10px;
+  }
+  .pages-layout-header__nav-bar > .logo-nav > img {
+    height: 50px;
+    width: 50px;
+  }
+  .nav-bar__nav-theme-section {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .nav-theme-section__theme-section {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+  }
+  .theme-section__menu-button {
+    display: grid;
+    place-items: center;
+    transition: opacity 0.2s;
+  }
+  .theme-section__menu-button:hover {
+    opacity: 0.5;
+  }
+
+  .nav-theme-section__theme-section > button > svg {
+    height: 25px;
+    width: 25px;
+  }
+
+  .nav-theme-section__nav-section {
+    background-color: var(--nav-theme-section__nav-section--background-color);
+    padding: 20px 0;
+
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 20px;
+
+    position: absolute;
+    top: 60px;
+    transition: left 0.3s;
+  }
+
+  .show {
+    left: 0;
+  }
+  .hide {
+    left: 100%;
+  }
+
+  nav.nav-bar__pages-nav {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav.nav-bar__sign-log-theme-nav {
+    width: 100%;
+
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+}

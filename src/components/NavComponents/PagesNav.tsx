@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 
+import { IoMdMenu } from "react-icons/io";
+import { FaRegCircleUser } from "react-icons/fa6";
+
 import { useConvexAuth, useQuery } from "convex/react";
 
 import { authClient } from "@/src/libs/auth-client";
@@ -11,6 +14,9 @@ import CommonNavBar from "@/src/components/NavComponents/CommonNavBar";
 import NavLogo from "@/src/components/NavComponents/NavLogo";
 import ThemeButton from "@/src/components/NavComponents/ThemeButton";
 import NavSkeleton from "./NavSkeleton";
+
+import "@/src/css/pagesNav.css";
+
 import { api } from "@/convex/_generated/api";
 import { useEffect, useState } from "react";
 import { useToastContext } from "@/src/contextProviders/MyContexts";
@@ -21,6 +27,8 @@ export default function PagesNav() {
   const { setToastData } = useToastContext();
 
   const [isCustomLoading, setIsCustomLoading] = useState<boolean>(false);
+
+  const [childNavShowHideState, setIsChildNavShowHide] = useState(false);
 
   const convexUser = useQuery(api.auth.getMe);
 
@@ -92,30 +100,89 @@ export default function PagesNav() {
       {isLoading || isCustomLoading ? (
         <NavSkeleton />
       ) : (
-        <CommonNavBar className="pages-layout-header__nav-bar">
+        <CommonNavBar
+          isShow={childNavShowHideState}
+          className="pages-layout-header__nav-bar"
+        >
           <NavLogo />
-          <nav className="nav-bar__pages-nav">
-            <Link href="/">Home</Link>
-            <Link href="/Blog">Blog</Link>
-            <Link href="/Create">Create</Link>
-          </nav>
+          <div className="nav-bar__nav-theme-section">
+            <div
+              className={`nav-theme-section__nav-section ${childNavShowHideState ? "show" : "hide"}`}
+            >
+              <nav className="nav-bar__pages-nav">
+                <Link
+                  onClick={() => {
+                    setIsChildNavShowHide(false);
+                  }}
+                  href="/"
+                >
+                  Home
+                </Link>
+                <Link
+                  onClick={() => {
+                    setIsChildNavShowHide(false);
+                  }}
+                  href="/Blog"
+                >
+                  Blog
+                </Link>
+                <Link
+                  onClick={() => {
+                    setIsChildNavShowHide(false);
+                  }}
+                  href="/Create"
+                >
+                  Create
+                </Link>
+              </nav>
 
-          <nav className="nav-bar__sign-log-theme-nav">
-            {convexUser ? (
-              <>
-                <p className="user-info">{convexUser?.name}</p>
-                <button className="logout-button" onClick={handleLogout}>
-                  Log Out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/SignUp">Sign Up</Link>
-                <Link href="/LogIn">Log In</Link>
-              </>
-            )}
-            <ThemeButton />
-          </nav>
+              <nav className="nav-bar__sign-log-theme-nav">
+                {convexUser ? (
+                  <>
+                    <p className="user-info">
+                      <FaRegCircleUser />
+                      {convexUser?.name}
+                    </p>
+                    <button className="logout-button" onClick={handleLogout}>
+                      Log Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      onClick={() => {
+                        setIsChildNavShowHide(false);
+                      }}
+                      href="/SignUp"
+                    >
+                      Sign Up
+                    </Link>
+                    <Link
+                      onClick={() => {
+                        setIsChildNavShowHide(false);
+                      }}
+                      href="/LogIn"
+                    >
+                      Log In
+                    </Link>
+                  </>
+                )}
+              </nav>
+            </div>
+
+            <div className="nav-theme-section__theme-section">
+              <ThemeButton />
+
+              <button
+                onClick={() => {
+                  setIsChildNavShowHide((prevState) => !prevState);
+                }}
+                className="theme-section__menu-button"
+              >
+                <IoMdMenu />
+              </button>
+            </div>
+          </div>
         </CommonNavBar>
       )}
     </>

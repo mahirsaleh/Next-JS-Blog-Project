@@ -22,6 +22,10 @@
   --nav__a--hover-color: teal;
   /* nav style ends */
 
+  /* PagesNav.tsx starts */
+  --nav-theme-section__nav-section--background-color: rgba(255, 255, 255);
+  /* PagesNav.tsx ends */
+
   /* skeleton-nav style stats */
   --skeleton-nav--background-color: rgba(255, 255, 255, 0.7);
   --skeleton-nav__animation-start: hsla(0, 0%, 80%, 0.7);
@@ -52,6 +56,10 @@
   /* ScrollTopButton.tsx stats */
   --scroll-button-background-color: lightcoral;
   /* ScrollTopButton.tsx ends */
+
+  /* _BlogDeleteButton stats */
+    --delete-pop-up-container--background-color: hsl(0, 0%, 100%) ;
+  /* _BlogDeleteButton ends */
 }
 [data-theme="dark"],
 .dark {
@@ -70,6 +78,10 @@
   --nav--background-color: rgba(0, 0, 0, 0.8);
   --nav__a--hover-color: cyan;
   /* nav style ends */
+
+  /* PagesNav.tsx starts */
+  --nav-theme-section__nav-section--background-color: rgba(0, 0, 0, 0.9);
+  /* PagesNav.tsx ends */
 
   /* skeleton style ends */
   --skeleton-nav--background-color: rgba(255, 255, 255, 0.3);
@@ -102,6 +114,10 @@
   /* ScrollTopButton.tsx stats */
   --scroll-button-background-color: darkgray;
   /* ScrollTopButton.tsx ends */
+
+    /* _BlogDeleteButton stats */
+    --delete-pop-up-container--background-color: hsl(0, 0%, 0%) ;
+  /* _BlogDeleteButton ends */
 }
 
 body {
@@ -111,7 +127,6 @@ body {
   transition:
     background-color 0.3s,
     color 0.3s;
-  /* height: 1000rem; */
 }
 
 html {

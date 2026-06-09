@@ -11,9 +11,10 @@ import "@/src/css/commonNavBar.css";
 interface IProps {
   children: React.ReactNode;
   className: string;
+  isShow?: boolean;
 }
 
-export default function CommonNavBar({ children, className }: IProps) {
+export default function CommonNavBar({ children, className, isShow }: IProps) {
   // const { resolvedTheme } = useTheme();
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -32,7 +33,9 @@ export default function CommonNavBar({ children, className }: IProps) {
       const lastScrollYDownBeforeHide = 70;
       const lastScrollYUpBeforeShow = 10;
 
-      if (currentScrollY <= lastScrollYDownBeforeHide) {
+      if (isShow) {
+        setIsVisible(true);
+      } else if (currentScrollY <= lastScrollYDownBeforeHide) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY.current) {
         setIsVisible(false);
@@ -48,7 +51,7 @@ export default function CommonNavBar({ children, className }: IProps) {
     window.addEventListener("scroll", scrollFunction, { passive: true });
 
     return () => window.removeEventListener("scroll", scrollFunction);
-  }, []);
+  }, [isShow]);
 
   // if (!isMount) {
   //   console.log("mahir 1");

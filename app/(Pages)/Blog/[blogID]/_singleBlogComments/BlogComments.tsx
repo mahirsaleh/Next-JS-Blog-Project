@@ -1,12 +1,13 @@
 "use client";
 
 import BlogCommentForm from "./BlogCommentForm";
-import { Preloaded, usePreloadedQuery } from "convex/react";
+import { Preloaded, usePreloadedQuery, useQuery } from "convex/react";
 
 import { FaRegCircleUser } from "react-icons/fa6";
 
 import "@/src/css/blogComments.css";
 import { api } from "@/convex/_generated/api";
+import CommentDeleteButton from "../_blogDeleteButtons/CommentDeleteButton";
 
 type TProps = {
   preloadedComments: Preloaded<typeof api.postComments.getPostComments>;
@@ -14,6 +15,8 @@ type TProps = {
 
 export default function BlogComments({ preloadedComments }: TProps) {
   const commentList = usePreloadedQuery(preloadedComments);
+
+  const user = useQuery(api.user.getCurrentUser);
 
   return (
     <div className="blog-comments-section">
@@ -45,6 +48,11 @@ export default function BlogComments({ preloadedComments }: TProps) {
                   </p>
                 </div>
                 <p className="comment__body">{comment.body}</p>
+                <CommentDeleteButton
+                  isShowDeleteButton={comment.authorID === user?._id}
+                  commentID={comment._id}
+                  postID={comment.postID}
+                />
               </div>
             );
           })}

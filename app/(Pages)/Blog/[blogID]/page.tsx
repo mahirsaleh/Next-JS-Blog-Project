@@ -15,6 +15,9 @@ import { Metadata } from "next";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { cacheLife, cacheTag } from "next/cache";
+import BlogDeleteButton from "./_blogDeleteButtons/BlogDeleteButton";
+import DeletePopUp from "./_blogDeleteButtons/DeletePopUp";
+import DeletePostWrapper from "@/src/contextProviders/DeletePostWrapper";
 
 type TProps = {
   params: Promise<{ blogID: Id<"posts"> }>;
@@ -31,12 +34,11 @@ export default async function SingleBlog({ params }: TProps) {
     const { blogID } = await params;
     blogId = blogID;
 
-    cacheTag(`singleBlogPage-${blogID}`);
-
     [singleBlogData, preloadedComments] = await Promise.all([
       singleBlogFunction({ postID: blogID }),
       getBlogCommentFunction({ blogID: blogId }),
     ]);
+    cacheTag(`singleBlogPage-${blogID}`);
   } catch (error) {
     console.error(error);
 
@@ -48,6 +50,9 @@ export default async function SingleBlog({ params }: TProps) {
         <h1 className="post-header__post-title">{singleBlogData.title}</h1>
         <p className="post-header__post-creation-time">
           {new Date(singleBlogData._creationTime!).toLocaleString()}
+        </p>
+        <p className="post-header__post-creation-time post-header__authorName">
+          Author Name - {singleBlogData.authorName}
         </p>
       </div>
       <div className="single-blog-container__single-blog-container-image-div">
@@ -62,7 +67,16 @@ export default async function SingleBlog({ params }: TProps) {
       </div>
       <p className="single-blog-container__post-body">{singleBlogData.body}</p>
 
-      <BlogComments preloadedComments={preloadedComments} />
+      <DeletePostWrapper>
+        <DeletePopUp />
+
+        <BlogComments preloadedComments={preloadedComments} />
+
+        <BlogDeleteButton
+          authorID={singleBlogData.authorID!}
+          imageStorageID={singleBlogData.imageStorageID!}
+        />
+      </DeletePostWrapper>
     </div>
   );
 }

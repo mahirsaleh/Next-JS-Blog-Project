@@ -42,3 +42,18 @@
     background-color: var(--skeleton-nav__animation-end);
   }
 }
+
+@media screen and (max-width: 575px) {
+  .skeleton-container {
+    height: 50px;
+    padding-left: 12px;
+  }
+  .skeleton-container__logo {
+    height: 45px;
+    width: 45px;
+  }
+  .skeleton-container__text {
+    border-radius: 5px;
+    height: 95%;
+  }
+}

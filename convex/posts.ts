@@ -29,6 +29,7 @@ export const createPosts = mutation({
       authorID: user._id,
       imageStorageID: args.imageStorageID,
       imageBlurDataURL: args.imageBlurDataURL,
+      authorName: user.name,
     });
 
     return blogArticle;
@@ -87,5 +88,33 @@ export const singleBlogWithID = query({
       ...singlePost,
       imageURL: resolvedImageURL,
     };
+  },
+});
+
+export const deletePost = mutation({
+  args: {
+    postId: v.id("posts"),
+  },
+  handler: async (ctx, args) => {
+    const user = await authComponent.safeGetAuthUser(ctx);
+
+    if (!user) {
+      throw new ConvexError("Not Authenticated");
+    }
+
+    const post = await ctx.db.get(args.postId);
+    if (!post) {
+      throw new ConvexError("Post does not exist");
+    }
+
+    if (post.authorID !== user._id) {
+      throw new ConvexError("You are not the Owner of the Post");
+    }
+
+    await ctx.storage.delete(post.imageStorageID);
+
+    await ctx.db.delete(args.postId);
+
+    return true;
   },
 });

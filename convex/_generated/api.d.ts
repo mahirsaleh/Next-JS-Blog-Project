@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as http from "../http.js";
 import type * as postComments from "../postComments.js";
 import type * as posts from "../posts.js";
+import type * as user from "../user.js";
 
 import type {
   ApiFromModules,
@@ -24,6 +25,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   postComments: typeof postComments;
   posts: typeof posts;
+  user: typeof user;
 }>;
 
 /**
