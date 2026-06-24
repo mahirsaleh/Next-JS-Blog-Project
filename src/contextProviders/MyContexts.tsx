@@ -53,3 +53,20 @@ export function useDeletePostContext(): TDeletePostContext {
 }
 
 /* Delete Post Wrapper Ends */
+
+/* Search Post Context Starts */
+
+type TSearchPostContext = {
+  isShowSearchBar: boolean;
+  setIsShowSearchBar: Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const SearchPostContext = createContext<TSearchPostContext | null>(null);
+
+export function useSearchPostContext(): TSearchPostContext {
+  const searchPostContextData = useContext(SearchPostContext);
+
+  return searchPostContextData!;
+}
+
+/* Search Post Context Ends */

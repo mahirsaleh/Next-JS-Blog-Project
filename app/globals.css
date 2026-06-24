@@ -32,9 +32,14 @@
   --skeleton-nav__animation-end: hsla(0, 0%, 65%, 0.7);
   /* skeleton-nav style ends */
 
-  /*toast starts */
+  /* toast starts */
   --toast-container--background-color: teal;
-  /*toast ends */
+  /* toast ends */
+
+  /* SearchBar.tsx starts */
+  --search-input-placeholder--color: grey;
+  --search-input-label--background-color: white;
+  /* SearchBar.tsx ends */
 
   /* Auth Form starts */
   --auth-form-container--background-color: hsl(0, 0%, 94%);
@@ -58,8 +63,17 @@
   /* ScrollTopButton.tsx ends */
 
   /* _BlogDeleteButton stats */
-    --delete-pop-up-container--background-color: hsl(0, 0%, 100%) ;
+  --delete-pop-up-container--background-color: hsl(0, 0%, 100%);
   /* _BlogDeleteButton ends */
+
+  /* SearchBar.tsx starts */
+  --search-result-section__search-result--background-color: hsl(0, 0%, 92%);
+  --search-result-section__search-result--background-color--hover: hsl(
+    0,
+    0%,
+    88%
+  );
+  /* SearchBar.tsx ends */
 }
 [data-theme="dark"],
 .dark {
@@ -89,9 +103,14 @@
   --skeleton-nav__animation-end: hsla(0, 0%, 70%, 0.3);
   /* skeleton style ends */
 
-  /*toast starts */
+  /* toast starts */
   --toast-container--background-color: hsl(0, 0%, 15%);
-  /*toast ends */
+  /* toast ends */
+
+  /* SearchBar.tsx starts */
+  --search-input-placeholder--color: lightgray;
+  --search-input-label--background-color: hsl(0, 0%, 23%);
+  /* SearchBar.tsx ends */
 
   /* Auth Form starts */
   --auth-form-container--background-color: rgba(255, 255, 255, 0.2);
@@ -115,9 +134,18 @@
   --scroll-button-background-color: darkgray;
   /* ScrollTopButton.tsx ends */
 
-    /* _BlogDeleteButton stats */
-    --delete-pop-up-container--background-color: hsl(0, 0%, 0%) ;
+  /* _BlogDeleteButton stats */
+  --delete-pop-up-container--background-color: hsl(0, 0%, 0%);
   /* _BlogDeleteButton ends */
+
+  /* SearchBar.tsx starts */
+  --search-result-section__search-result--background-color: hsl(0, 0%, 13%);
+  --search-result-section__search-result--background-color--hover: hsl(
+    0,
+    0%,
+    5%
+  );
+  /* SearchBar.tsx ends */
 }
 
 body {
@@ -138,6 +166,10 @@ html {
 a {
   text-decoration: none;
   color: var(--color);
+}
+
+a {
+  transition: color 0.15s;
 }
 
 /* loading.tsx style starts */

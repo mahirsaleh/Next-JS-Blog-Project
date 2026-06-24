@@ -4,6 +4,7 @@ import Toast from "@/src/components/Toast";
 import "./pageLayout.css";
 import CustomFooter from "@/src/components/Footer/CustomFooter";
 import ScrollTopButton from "@/src/components/ScrollTopButton/ScrollTopButton";
+import SearchBar from "@/src/components/Search/SearchBar";
 
 export default function PagesLayout({
   children,
@@ -14,6 +15,8 @@ export default function PagesLayout({
     <>
       <Toast />
       <ScrollTopButton />
+      <SearchBar />
+
       <header className="pages-layout-header">
         <PagesNav />
       </header>

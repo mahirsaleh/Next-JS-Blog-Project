@@ -1,0 +1,19 @@
+.home-page-section {
+  height: calc(100svh - 70px);
+
+  display: grid;
+  place-items: center;
+}
+
+.home-page-section__heading {
+  font-size: 50px;
+  text-align: center;
+  text-align-last: center;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 335px) {
+  .home-page-section__heading {
+    font-size: 40px;
+  }
+}

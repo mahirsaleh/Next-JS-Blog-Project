@@ -1,7 +1,6 @@
 .FooterDiv {
   position: relative;
 
-  margin-top: 180px;
   padding: 100px 0px;
 }
 
@@ -85,7 +84,6 @@ div.FooterDiv__info-div > p.info-div__copy-right {
 @media screen and (max-width: 849px) {
   .FooterDiv {
     padding: 60px 0px;
-    margin-top: 150px;
   }
   .info-div__links {
     gap: 20px;

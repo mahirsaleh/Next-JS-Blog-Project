@@ -10,7 +10,13 @@ export default defineSchema({
     authorName: v.string(),
     imageStorageID: v.id("_storage"),
     imageBlurDataURL: v.string(),
-  }),
+  })
+    .searchIndex("searchTitle", {
+      searchField: "title",
+    })
+    .searchIndex("searchBody", {
+      searchField: "body",
+    }),
   postComments: defineTable({
     postID: v.id("posts"),
     authorID: v.string(),

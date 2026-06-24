@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: 70px;
+
+  margin-bottom: 180px;
 }
 
 .single-blog-container__post-header {
@@ -94,6 +96,10 @@
   }
 }
 @media screen and (max-width: 800px) {
+  .single-blog-container {
+    margin-bottom: 150px;
+  }
+
   .single-blog-container__post-header {
     margin: 0 30px;
   }
@@ -105,6 +111,7 @@
 @media screen and (max-width: 580px) {
   .single-blog-container {
     gap: 50px;
+    margin-bottom: 120px;
   }
 
   .post-header__post-title {

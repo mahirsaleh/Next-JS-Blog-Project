@@ -14,13 +14,21 @@ import {
 import { useToastContext } from "../contextProviders/MyContexts";
 import { createPostSubmitFunction } from "@/app/actions";
 
-type TBlogFormInitialState = {
+import {
+  getSessionStorage,
+  setSessionStorage,
+  removeSessionStorage,
+} from "../Types/sessionStorageType";
+
+export type TBlogFormInitialState = {
   title: string;
   content: string;
   image: undefined | File;
 };
 
-const blogFormInitialState: TBlogFormInitialState = {
+const blogFormInitialState: TBlogFormInitialState = getSessionStorage(
+  "CreatePageForm",
+) || {
   title: "",
   content: "",
   image: undefined,
@@ -41,13 +49,23 @@ const blogFormReducer = function (
   action: TBlogFormReducerAction,
 ): TBlogFormInitialState {
   if (action.title === "reset") {
-    return blogFormInitialState;
+    const newState = {
+      title: "",
+      content: "",
+      image: undefined,
+    };
+    removeSessionStorage("CreatePageForm");
+
+    return newState;
   }
 
-  return {
+  const newState = {
     ...prevState,
     [action.key]: action.value,
   };
+  setSessionStorage("CreatePageForm", newState);
+
+  return newState;
 };
 
 type TInitialActionState = {
@@ -146,7 +164,9 @@ export default function CreatePageForm() {
           title: "reset",
         });
         inputImgRef.current!.value = "";
+
         setToastData("Blog Posted Successfully");
+        removeSessionStorage("CreatePageForm");
         router.push("/Blog");
 
         return initialActionState;

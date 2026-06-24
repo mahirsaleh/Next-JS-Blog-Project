@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 import { authComponent } from "./betterAuth/auth";
+import { Doc } from "./_generated/dataModel";
 
 export const getImageUrl = query({
   args: { imageStorageID: v.id("_storage") },
@@ -116,5 +117,56 @@ export const deletePost = mutation({
     await ctx.db.delete(args.postId);
 
     return true;
+  },
+});
+
+export const searchPost = query({
+  args: {
+    term: v.string(),
+    limit: v.number(),
+  },
+  handler: async function (ctx, args) {
+    const limit = args.limit;
+
+    const results: Array<{
+      id: string;
+      title: string;
+      body: string;
+    }> = [];
+
+    const resultsWithoutDuplication = new Set();
+
+    const pushDocuments = async function (documents: Array<Doc<"posts">>) {
+      for (const post of documents) {
+        if (!resultsWithoutDuplication.has(post._id)) {
+          resultsWithoutDuplication.add(post._id);
+
+          results.push({
+            id: post._id,
+            title: post.title,
+            body: post.body,
+          });
+          if (results.length >= limit) break;
+        }
+      }
+    };
+
+    const titleMatches = await ctx.db
+      .query("posts")
+      .withSearchIndex("searchTitle", (q) => q.search("title", args.term))
+      .take(limit);
+
+    await pushDocuments(titleMatches);
+
+    if (results.length < limit) {
+      const bodyMatches = await ctx.db
+        .query("posts")
+        .withSearchIndex("searchBody", (q) => q.search("body", args.term))
+        .take(limit);
+
+      await pushDocuments(bodyMatches);
+    }
+
+    return results;
   },
 });

@@ -19,7 +19,13 @@ import "@/src/css/pagesNav.css";
 
 import { api } from "@/convex/_generated/api";
 import { useEffect, useState } from "react";
-import { useToastContext } from "@/src/contextProviders/MyContexts";
+
+import {
+  useSearchPostContext,
+  useToastContext,
+} from "@/src/contextProviders/MyContexts";
+import NavSearchButton from "../Search/NavSearchButton";
+import { removeAllSessionStorage } from "@/src/Types/sessionStorageType";
 
 export default function PagesNav() {
   const { isLoading } = useConvexAuth();
@@ -34,11 +40,14 @@ export default function PagesNav() {
 
   const router = useRouter();
 
+  const { setIsShowSearchBar } = useSearchPostContext();
+
   const handleLogout = async () => {
     setIsCustomLoading(true);
     try {
       await authClient.signOut();
 
+      removeAllSessionStorage();
       router.refresh();
       router.push("/");
     } catch (error) {
@@ -134,6 +143,10 @@ export default function PagesNav() {
                 >
                   Create
                 </Link>
+
+                <NavSearchButton
+                  setIsChildNavShowHide={setIsChildNavShowHide}
+                />
               </nav>
 
               <nav className="nav-bar__sign-log-theme-nav">
@@ -176,6 +189,7 @@ export default function PagesNav() {
               <button
                 onClick={() => {
                   setIsChildNavShowHide((prevState) => !prevState);
+                  setIsShowSearchBar(false);
                 }}
                 className="theme-section__menu-button"
               >
