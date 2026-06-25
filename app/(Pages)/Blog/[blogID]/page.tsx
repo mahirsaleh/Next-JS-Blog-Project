@@ -1,3 +1,5 @@
+"use cache";
+
 // import { getBlogCommentFunction, singleBlogFunction } from "@/app/actions";
 
 import { Id } from "@/convex/_generated/dataModel";
@@ -14,7 +16,7 @@ import "@/src/css/singleBlogPage.css";
 
 import { Metadata } from "next";
 
-// import { cacheLife, cacheTag } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 import BlogDeleteButton from "./_blogDeleteButtons/BlogDeleteButton";
 
@@ -57,7 +59,7 @@ export async function generateMetadata({ params }: TProps): Promise<Metadata> {
 }
 
 export default async function SingleBlog({ params }: TProps) {
-  // cacheLife("max");
+  cacheLife("max");
 
   let singleBlogData;
 
@@ -84,7 +86,7 @@ export default async function SingleBlog({ params }: TProps) {
       preloadQuery(api.postComments.getPostComments, { postID: blogID }),
     ]);
 
-    // cacheTag(`singleBlogPage-${blogID}`);
+    cacheTag(`singleBlogPage-${blogID}`);
   } catch (error) {
     console.error(error);
 
