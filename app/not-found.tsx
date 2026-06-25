@@ -21,26 +21,7 @@ export default function NotFound() {
       <h1>Page Not Found</h1>
       <h2>Go To Previous Page</h2>
 
-      {/*
-      <RedirectButton className="container__back-button" whereToGo="back">
-        Previous Page
-      </RedirectButton>
-      <RedirectButton
-        className="container__back-button"
-        whereToGo={{ path: "/" }}
-      >
-        Home Page
-      </RedirectButton>
-      */}
-
-      {/* <button
-        className="container__back-button"
-        onClick={() => {
-          window.history.back()
-        }}
-      >
-        Previous Page
-      </button> */}
+     
       <Link
         className="container__back-button"
         href="/"
