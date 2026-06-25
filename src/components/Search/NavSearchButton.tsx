@@ -4,12 +4,18 @@ import { Dispatch } from "react";
 
 type TProps = {
   setIsChildNavShowHide: Dispatch<React.SetStateAction<boolean>>;
+  isAuthenticated: boolean;
 };
 
-export default function NavSearchButton({ setIsChildNavShowHide }: TProps) {
+export default function NavSearchButton({
+  setIsChildNavShowHide,
+  isAuthenticated,
+}: TProps) {
   const { setIsShowSearchBar } = useSearchPostContext();
 
   const navSearchButtonOnClickHandler = function () {
+    if (!isAuthenticated) return;
+
     setIsChildNavShowHide(false);
 
     setIsShowSearchBar(true);
