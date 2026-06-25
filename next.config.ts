@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
 
     remotePatterns: [
       {
-        hostname: "tough-hare-14.convex.cloud",
+        hostname: "merry-rat-943.convex.cloud",
         protocol: "https",
         port: "",
       },
