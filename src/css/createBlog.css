@@ -7,6 +7,8 @@ div.create-container {
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  margin-bottom: 180px;
 }
 
 h1.create-container__heading {

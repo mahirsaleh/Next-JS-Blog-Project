@@ -73,8 +73,6 @@ export default function SearchBar() {
     }
   }, [isShowSearchBar]);
 
-  console.log(searchResult);
-
   return (
     <div
       className={`search-bar-outer-div ${isShowSearchBar ? "search-bar-outer-div--show" : "search-bar-outer-div--hide"}`}

@@ -28,7 +28,7 @@ import NavSearchButton from "../Search/NavSearchButton";
 import { removeAllSessionStorage } from "@/src/Types/sessionStorageType";
 
 export default function PagesNav() {
-  const { isLoading } = useConvexAuth();
+  const { isLoading, isAuthenticated } = useConvexAuth();
 
   const { setToastData } = useToastContext();
 
@@ -150,7 +150,7 @@ export default function PagesNav() {
               </nav>
 
               <nav className="nav-bar__sign-log-theme-nav">
-                {convexUser ? (
+                {convexUser && isAuthenticated ? (
                   <>
                     <p className="user-info">
                       <FaRegCircleUser />

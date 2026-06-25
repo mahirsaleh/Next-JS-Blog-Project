@@ -3,6 +3,7 @@
   avoid react dev tool error ! ;
 */
 export default function Loading() {
+
   return (
     <div className="loadingContainer">
       <div className="loadingCircle"></div>

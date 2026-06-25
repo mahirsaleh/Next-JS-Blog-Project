@@ -29,7 +29,7 @@
   width: 100%;
 
   position: absolute;
-  top: 300%;
+  top: 120px;
 }
 
 .blog-section__blog {
@@ -147,7 +147,7 @@
     padding-bottom: 120px;
   }
   .blog-container__heading {
-    font-size: 30px;
+    font-size: 35px;
   }
   .blog-container__blog-section {
     gap: 35px;

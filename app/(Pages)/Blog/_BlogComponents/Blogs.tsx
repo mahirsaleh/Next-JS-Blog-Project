@@ -16,10 +16,21 @@ type TProps = {
 export default function Blogs({ preloadedBlogs }: TProps) {
   const blogsData = usePreloadedQuery(preloadedBlogs);
 
+  const noBlogs = !blogsData.length;
+
   return (
-    <div className="blog-container__blog-section">
-      {!blogsData.length ? (
-        <div className="blog-section__no-blog-found">No Blog Found</div>
+    <div
+      className="blog-container__blog-section"
+      style={
+        noBlogs
+          ? {
+              height: "80svh",
+            }
+          : {}
+      }
+    >
+      {noBlogs ? (
+        <p className="blog-section__no-blog-found">No Blog Found</p>
       ) : (
         blogsData.map((blog) => (
           <div key={blog._id} className="blog-section__blog">

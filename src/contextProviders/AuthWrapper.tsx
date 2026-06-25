@@ -1,36 +1,52 @@
-// import MyError from "@/app/error";
-import { ConvexClientProvider } from "@/src/libs/ConvexClientProvider";
-import { getToken } from "@/src/libs/auth-server";
+"use client";
 
-export default async function AuthWrapper({
+import { useState, useEffect } from "react";
+import { ConvexClientProvider } from "@/src/libs/ConvexClientProvider";
+import { getAuthTokenAction } from "@/app/actions";
+import Offline from "../components/Offline";
+import { useConnection } from "../MyHooks/useConnection";
+import Loading from "@/app/loading";
+
+export default function AuthWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  let token: string | undefined;
+  const [token, setToken] = useState<string | undefined>(undefined);
 
-  try {
-    token = await getToken();
-  } catch (error) {
-    const authError =
-      error instanceof Error ? error : new Error("Something Went Wrong");
+  const { isOffline } = useConnection();
 
-    throw authError;
-  }
+  const [isLoading, setIsLoading] = useState(true);
 
-  // if (token) {
-  //   return (
-  //     <ConvexClientProvider initialToken={token}>
-  //       {children}
-  //     </ConvexClientProvider>
-  //   );
-  // } else {
-  //   return <MyError error={new Error('Something Went Wrong!')} />
-  // }
+  useEffect(() => {
+    if (!isOffline) {
+      setIsLoading(false);
+
+      return;
+    }
+
+    const fetchToken = async () => {
+      try {
+        const token = await getAuthTokenAction();
+
+        setToken(token);
+      } catch (err) {
+        console.error("Auth failed", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchToken();
+  }, [isOffline]);
+
+  if (isLoading) return <Loading />;
+
+  if (isOffline) return <Offline />;
 
   return (
-      <ConvexClientProvider initialToken={token}>
-        {children}
-      </ConvexClientProvider>
-    );
+    <ConvexClientProvider initialToken={token!}>
+      {children}
+    </ConvexClientProvider>
+  );
 }

@@ -10,6 +10,15 @@ import { getPlaiceholder } from "plaiceholder";
 import { Preloaded } from "convex/react";
 // import { createPostComments } from "@/convex/postComments";
 
+export async function getAuthTokenAction() {
+  try {
+    return await getToken();
+  } catch (error) {
+    console.error(error);
+    return undefined; // Return null if not authenticated
+  }
+}
+
 /* generateBlurDataURL starts */
 
 export async function generateBlurDataURL(imageUrl: string) {

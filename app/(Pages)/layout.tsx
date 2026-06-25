@@ -5,6 +5,7 @@ import "./pageLayout.css";
 import CustomFooter from "@/src/components/Footer/CustomFooter";
 import ScrollTopButton from "@/src/components/ScrollTopButton/ScrollTopButton";
 import SearchBar from "@/src/components/Search/SearchBar";
+// import DownloadToast from "@/src/components/DownloadToast";
 
 export default function PagesLayout({
   children,
@@ -14,6 +15,7 @@ export default function PagesLayout({
   return (
     <>
       <Toast />
+      {/* <DownloadToast /> */}
       <ScrollTopButton />
       <SearchBar />
 

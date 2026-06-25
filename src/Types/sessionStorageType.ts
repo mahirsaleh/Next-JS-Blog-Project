@@ -1,9 +1,16 @@
 import { TBlogFormInitialState } from "../components/CreatePageForm";
 
-type SessionStorageEntry = {
-  key: "CreatePageForm";
-  value: TBlogFormInitialState;
-};
+import { TDownloadToastType } from "../components/DownloadToast";
+
+type SessionStorageEntry =
+  | {
+      key: "CreatePageForm";
+      value: TBlogFormInitialState;
+    }
+  | {
+      key: "DownloadToast";
+      value: TDownloadToastType;
+    };
 
 type SessionStorageKey = SessionStorageEntry["key"];
 
