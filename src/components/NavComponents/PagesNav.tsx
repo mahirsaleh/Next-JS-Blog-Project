@@ -144,9 +144,13 @@ export default function PagesNav() {
                   Create
                 </Link>
 
-                <NavSearchButton
-                  setIsChildNavShowHide={setIsChildNavShowHide}
-                />
+                {convexUser && isAuthenticated ? (
+                  <NavSearchButton
+                    setIsChildNavShowHide={setIsChildNavShowHide}
+                  />
+                ) : (
+                  ""
+                )}
               </nav>
 
               <nav className="nav-bar__sign-log-theme-nav">
