@@ -1,4 +1,4 @@
-// "use cache";
+"use cache";
 
 // import { getBlogCommentFunction, singleBlogFunction } from "@/app/actions";
 
@@ -27,7 +27,6 @@ import DeletePostWrapper from "@/src/contextProviders/DeletePostWrapper";
 import { fetchQuery, preloadQuery } from "convex/nextjs";
 
 import { api } from "@/convex/_generated/api";
-import { connection } from "next/server";
 
 type TProps = {
   params: Promise<{ blogID: Id<"posts"> }>;
@@ -60,8 +59,7 @@ type TProps = {
 // }
 
 export default async function SingleBlog({ params }: TProps) {
-  // cacheLife("max");
-  await connection();
+  cacheLife("max");
 
   let singleBlogData;
 
@@ -70,7 +68,6 @@ export default async function SingleBlog({ params }: TProps) {
   let preloadedComments;
 
   try {
-
     const { blogID } = await params;
 
     // blogId = blogID;
@@ -89,7 +86,7 @@ export default async function SingleBlog({ params }: TProps) {
       preloadQuery(api.postComments.getPostComments, { postID: blogID }),
     ]);
 
-    // cacheTag(`singleBlogPage-${blogID}`);
+    cacheTag(`singleBlogPage-${blogID}`);
   } catch (error) {
     console.error(error);
 
