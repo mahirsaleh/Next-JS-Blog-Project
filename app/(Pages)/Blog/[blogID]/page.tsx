@@ -14,7 +14,7 @@ import MadinaImage from "@/src/assets/Medina 1.jpg";
 
 import "@/src/css/singleBlogPage.css";
 
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
 import { cacheLife, cacheTag } from "next/cache";
 
@@ -32,31 +32,31 @@ type TProps = {
   params: Promise<{ blogID: Id<"posts"> }>;
 };
 
-export async function generateMetadata({ params }: TProps): Promise<Metadata> {
-  try {
-    const { blogID } = await params;
+// export async function generateMetadata({ params }: TProps): Promise<Metadata> {
+//   try {
+//     const { blogID } = await params;
 
-    const singleBlogData = await fetchQuery(api.posts.singleBlogWithID, {
-      postID: blogID,
-    });
+//     const singleBlogData = await fetchQuery(api.posts.singleBlogWithID, {
+//       postID: blogID,
+//     });
 
-    if (!singleBlogData) {
-      return {
-        title: "No Blog Found",
+//     if (!singleBlogData) {
+//       return {
+//         title: "No Blog Found",
 
-        description: "Currently there is no blog has been posted",
-      };
-    }
+//         description: "Currently there is no blog has been posted",
+//       };
+//     }
 
-    return {
-      title: singleBlogData.title,
+//     return {
+//       title: singleBlogData.title,
 
-      description: `This page is a blog page about ${singleBlogData.title}`,
-    };
-  } catch (error) {
-    throw error;
-  }
-}
+//       description: `This page is a blog page about ${singleBlogData.title}`,
+//     };
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 export default async function SingleBlog({ params }: TProps) {
   cacheLife("max");
