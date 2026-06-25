@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
 
     remotePatterns: [
       {
-        hostname: "groovy-chihuahua-126.eu-west-1.convex.cloud",
+        hostname: "tough-hare-14.convex.cloud",
         protocol: "https",
         port: "",
       },
@@ -35,4 +35,4 @@ const nextConfig: NextConfig = {
 };
 
 // export default withPWA(nextConfig);
-export default nextConfig ;
+export default nextConfig;
