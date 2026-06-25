@@ -140,7 +140,9 @@ export default function SignUpForm() {
         setToastData(`Welcome Back ${data.user.name}`);
 
         router.refresh();
-        router.push("/");
+
+        window.location.href = "/";
+        // router.push("/");
 
         return initialActionState;
       } catch (error) {

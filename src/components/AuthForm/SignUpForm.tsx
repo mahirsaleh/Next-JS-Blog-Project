@@ -139,7 +139,8 @@ export default function SignUpForm() {
 
         router.refresh();
 
-        router.push("/");
+        // router.push("/");
+        window.location.href = "/";
 
         return initialActionState;
       } catch (error) {

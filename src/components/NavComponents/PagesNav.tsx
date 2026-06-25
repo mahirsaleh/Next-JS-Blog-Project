@@ -49,7 +49,9 @@ export default function PagesNav() {
 
       removeAllSessionStorage();
       router.refresh();
-      router.push("/");
+
+      // router.push("/");
+      window.location.href = "/";
     } catch (error) {
       const PagesNavError =
         error instanceof Error ? error : new Error("something went wrong!");
