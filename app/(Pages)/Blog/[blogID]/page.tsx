@@ -105,8 +105,9 @@ export async function generateMetadata({ params }: TProps): Promise<Metadata> {
 export const generateStaticParams = async function () {
   try {
     const blogData = await fetchQuery(api.posts.getPosts);
+    const returnArray = blogData.map((blog) => ({ blogID: blog._id }));
 
-    return blogData.map((blog) => ({ blogID: blog._id }));
+    return returnArray;
   } catch (error) {
     throw error;
   }
