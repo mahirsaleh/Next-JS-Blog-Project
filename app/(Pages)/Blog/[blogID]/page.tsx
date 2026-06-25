@@ -1,5 +1,3 @@
-"use cache";
-
 import { getBlogCommentFunction, singleBlogFunction } from "@/app/actions";
 import { Id } from "@/convex/_generated/dataModel";
 import { notFound } from "next/navigation";
@@ -12,38 +10,69 @@ import MadinaImage from "@/src/assets/Medina 1.jpg";
 import "@/src/css/singleBlogPage.css";
 import { Metadata } from "next";
 
-// import { fetchQuery } from "convex/nextjs";
-// import { api } from "@/convex/_generated/api";
-import { cacheLife, cacheTag } from "next/cache";
+// import { cacheLife, cacheTag } from "next/cache";
 import BlogDeleteButton from "./_blogDeleteButtons/BlogDeleteButton";
 import DeletePopUp from "./_blogDeleteButtons/DeletePopUp";
 import DeletePostWrapper from "@/src/contextProviders/DeletePostWrapper";
+import { fetchQuery, preloadQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 
 type TProps = {
   params: Promise<{ blogID: Id<"posts"> }>;
 };
 
+export async function generateMetadata({ params }: TProps): Promise<Metadata> {
+  try {
+    const { blogID } = await params;
+    const singleBlogData = await fetchQuery(api.posts.singleBlogWithID, {
+      postID: blogID,
+    });
+
+    if (!singleBlogData) {
+      return {
+        title: "No Blog Found",
+        description: "Currently there is no blog has been posted",
+      };
+    }
+
+    return {
+      title: singleBlogData.title,
+      description: `This page is a blog page about ${singleBlogData.title}`,
+    };
+  } catch (error) {
+    throw error;
+  }
+}
+
 export default async function SingleBlog({ params }: TProps) {
+  // cacheLife("max");
+
   let singleBlogData;
-  let blogId;
+  // let blogId;
   let preloadedComments;
 
   try {
     const { blogID } = await params;
-    cacheLife("max");
-    cacheTag(`singleBlogPage-${blogID}`);
 
-    blogId = blogID;
+    // blogId = blogID;
+
+    // [singleBlogData, preloadedComments] = await Promise.all([
+    //   singleBlogFunction({ postID: blogId }),
+    //   getBlogCommentFunction({ blogID: blogId }),
+    // ]);
 
     [singleBlogData, preloadedComments] = await Promise.all([
-      singleBlogFunction({ postID: blogID }),
-      getBlogCommentFunction({ blogID: blogId }),
+      fetchQuery(api.posts.singleBlogWithID, { postID: blogID }),
+      preloadQuery(api.postComments.getPostComments, { postID: blogID }),
     ]);
+
+    // cacheTag(`singleBlogPage-${blogID}`);
   } catch (error) {
     console.error(error);
 
     return notFound();
   }
+
   return (
     <div className="single-blog-container">
       <div className="single-blog-container__post-header">
@@ -80,35 +109,3 @@ export default async function SingleBlog({ params }: TProps) {
     </div>
   );
 }
-
-export async function generateMetadata({ params }: TProps): Promise<Metadata> {
-  try {
-    const { blogID } = await params;
-    const singleBlogData = await singleBlogFunction({ postID: blogID });
-
-    if (!singleBlogData) {
-      return {
-        title: "No Blog Found",
-        description: "Currently there is no blog has been posted",
-      };
-    }
-
-    return {
-      title: singleBlogData.title,
-      description: `This page is a blog page about ${singleBlogData.title}`,
-    };
-  } catch (error) {
-    throw error;
-  }
-}
-
-// export const generateStaticParams = async function () {
-//   try {
-//     const blogData = await fetchQuery(api.posts.getPosts);
-//     const returnArray = blogData.map((blog) => ({ blogID: blog._id }));
-
-//     return returnArray;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
