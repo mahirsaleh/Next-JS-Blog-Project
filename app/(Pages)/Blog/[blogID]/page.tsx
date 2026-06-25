@@ -24,15 +24,15 @@ type TProps = {
 };
 
 export default async function SingleBlog({ params }: TProps) {
-  const { blogID } = await params;
-  cacheLife("max");
-  cacheTag(`singleBlogPage-${blogID}`);
-
   let singleBlogData;
   let blogId;
   let preloadedComments;
 
   try {
+    const { blogID } = await params;
+    cacheLife("max");
+    cacheTag(`singleBlogPage-${blogID}`);
+
     blogId = blogID;
 
     [singleBlogData, preloadedComments] = await Promise.all([
