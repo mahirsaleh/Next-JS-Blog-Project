@@ -12,8 +12,8 @@ import MadinaImage from "@/src/assets/Medina 1.jpg";
 import "@/src/css/singleBlogPage.css";
 import { Metadata } from "next";
 
-import { fetchQuery } from "convex/nextjs";
-import { api } from "@/convex/_generated/api";
+// import { fetchQuery } from "convex/nextjs";
+// import { api } from "@/convex/_generated/api";
 import { cacheLife, cacheTag } from "next/cache";
 import BlogDeleteButton from "./_blogDeleteButtons/BlogDeleteButton";
 import DeletePopUp from "./_blogDeleteButtons/DeletePopUp";
@@ -102,13 +102,13 @@ export async function generateMetadata({ params }: TProps): Promise<Metadata> {
   }
 }
 
-export const generateStaticParams = async function () {
-  try {
-    const blogData = await fetchQuery(api.posts.getPosts);
-    const returnArray = blogData.map((blog) => ({ blogID: blog._id }));
+// export const generateStaticParams = async function () {
+//   try {
+//     const blogData = await fetchQuery(api.posts.getPosts);
+//     const returnArray = blogData.map((blog) => ({ blogID: blog._id }));
 
-    return returnArray;
-  } catch (error) {
-    throw error;
-  }
-};
+//     return returnArray;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
