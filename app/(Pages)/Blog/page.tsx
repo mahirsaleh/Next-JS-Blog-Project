@@ -1,4 +1,4 @@
-"use cache";
+// "use cache";
 
 import { Metadata } from "next";
 
@@ -6,7 +6,8 @@ import Blogs from "./_BlogComponents/Blogs";
 
 import "@/src/css/blogPage.css";
 import { getBlogDataFunction } from "@/app/actions";
-import { cacheLife, cacheTag } from "next/cache";
+import { connection } from "next/server";
+// import { cacheLife, cacheTag } from "next/cache";
 
 export const metadata: Metadata = {
   title: "Basic Blog | Blogs Page",
@@ -14,8 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-  cacheLife("max");
-  cacheTag("blogPage");
+  // cacheLife("max");
+  // cacheTag("blogPage");
+  // await connection()
+
+  await connection()
 
   let preloadedBlogs;
 
