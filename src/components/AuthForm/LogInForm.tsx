@@ -139,6 +139,7 @@ export default function SignUpForm() {
 
         setToastData(`Welcome Back ${data.user.name}`);
 
+        router.refresh();
         router.push("/");
 
         return initialActionState;

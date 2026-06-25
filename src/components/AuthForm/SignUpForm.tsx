@@ -137,12 +137,14 @@ export default function SignUpForm() {
         formDispatch({ type: "reset" });
         setToastData(`Welcome ${name}`);
 
+        router.refresh();
+
         router.push("/");
 
         return initialActionState;
       } catch (error) {
         console.error(error);
-        console.log('gorb')
+        console.log("gorb");
 
         setErrorState(true);
         const errorMessages: IInitialActionState = {
